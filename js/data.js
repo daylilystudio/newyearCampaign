@@ -1,4 +1,4 @@
-const datapath = "../img/data/"
+const datapath = "img/data/"
 const database = {
     kv: datapath + "maintitle.png",
     kvM: datapath + "maintitleM.png",
