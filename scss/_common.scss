@@ -1,0 +1,160 @@
+//共用
+.arrowTop {
+  border: solid rgba(255, 255, 255, 0.7);
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 5px;
+  vertical-align: -3px;
+}
+.arUp {
+  @include transform(rotate(-135deg));
+}
+
+.overhide {
+  overflow: hidden;
+}
+.showMask {
+  display: block !important;
+}
+.radius_S {
+  @include border-radius(4px);
+}
+.radius_M {
+  @include border-radius(10px !important);
+}
+.radius_M_top {
+  @include border-radius(10px 10px 0 0);
+}
+.radius_M_bottom {
+  @include border-radius(0 0 10px 10px);
+}
+.radius_L {
+  @include border-radius(13px);
+}
+.absolute {
+  position: absolute;
+  top: 0;
+  left: 50%;
+}
+
+//桌機手機變換
+@mixin rwdSet {
+  &.pc{
+    @media (max-width:900px) {
+      display: none;
+    }
+  }
+  &.mb{
+    display: none;
+    @media (max-width:900px) {
+      display: block;
+    }
+  }
+}
+//海浪動畫
+@mixin mixinWaveAni($name,$time,$pos) {
+  img{
+    animation: $name infinite ease-out $time;
+  }
+  @keyframes #{$name} {
+    0%{
+      transform: translateY(0);
+    }
+    40%{
+      transform: translateY(-8%);
+    }
+    80%{
+      transform: translateX($pos);
+    }
+    100%{
+      transform: translateX(0);
+    }
+  }
+}
+//搖曳動畫
+@keyframes sway {
+  0%{
+    transform: rotate(8deg);
+  }
+  100%{
+    transform: rotate(-8deg);
+  }
+}
+//小虎跳進跳出
+@keyframes tigerJump {
+  0%{
+    left: unset;
+    right: 0;
+    transform: translateX(105%) translateY(80%);
+    opacity: 1;
+  }
+  25%{
+    transform: translateX(-100%) translateY(0);
+    opacity: 1;
+  }
+  30%{
+    left: unset;
+    right: 0;
+    transform: translateX(-110%) translateY(5%);
+    opacity: 0;
+  }
+  50%{
+    left: 0;
+    right: unset;
+    opacity: 0;
+  }
+  70%{
+    left: 0;
+    right: unset;
+    transform: translateX(-105%) translateY(80%) scaleX(-1);
+    opacity: 1;
+  }
+  95%{
+    transform: translateX(100%) translateY(0) scaleX(-1);
+    opacity: 1;
+  }
+  100%{
+    transform: translateX(110%) translateY(5%) scaleX(-1);
+    opacity: 0;
+  }
+}
+//煙霧mixin
+@mixin mixinSmokeAni($name,$time,$pos1,$pos2) {
+  img{
+    transform-origin: 50% 100%;
+    animation: $name infinite ease-out $time;
+  }
+  @keyframes #{$name} {
+    0%{
+      transform: translateX($pos1) translateY(60%) scale(.5);
+      opacity: 0;
+    }
+    60%{
+      opacity: .6;
+    }
+    80%, 100%{
+      transform: translateX($pos2) translateY(-20%) scale(1.2);
+      opacity: 0;
+    }
+  }
+}
+//轉圈
+@keyframes goRound {
+  0%{
+    transform: rotate(0deg);
+  }
+  50%{
+    transform: rotate(-360deg);
+  }
+}
+//漂浮
+@keyframes float {
+  0%{
+    transform: unset;
+  }
+  100%{
+    transform: translateX(-2px) translateY(-6px);
+  }
+}
